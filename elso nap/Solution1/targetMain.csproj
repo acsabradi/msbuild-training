@@ -1,0 +1,25 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" 
+		 DefaultTargets="build">
+	<Import Project="targetProcess.csproj"/>
+	
+	<PropertyGroup>
+		<BuildDependsOn>
+			customprebuild;
+			$(BuildDependsOn);
+			custompostbuild
+		</BuildDependsOn>
+	</PropertyGroup>
+
+	<Target Name="customprebuild">
+		<Message Text="Something extra before the build..." />
+	</Target>
+
+	<Target Name="custompostbuild">
+		<Message Text="Something extra after the build..." />
+	</Target>
+
+
+	<Target Name="beforeprocess">
+		<Message Text="Extended before process parts" />
+	</Target>
+</Project>

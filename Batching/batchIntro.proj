@@ -1,0 +1,43 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<Server Include="gitlab.local">
+			<OS>Win10</OS>
+			<Location>201</Location>
+		</Server>
+		<Server Include="tfs.local">
+			<OS>Win8</OS>
+			<Location>402</Location>
+		</Server>
+		<Server Include="moodle.local">
+			<OS>Win10</OS>
+			<Location>402</Location>
+		</Server>
+		<Server Include="print.local">
+			<OS>Win8</OS>
+			<Location>201</Location>
+		</Server>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Admin Include="Akos" />
+		<Admin Include="Bela" />
+	</ItemGroup>
+
+	<Target Name="processInfra">
+		<Message Text="@(Server->'%(OS)')" />
+		<Message Text="Hello" />
+		<Message Text="%(Server.OS)" />
+		<Message Text="%(Server.Identity)" />
+		<Message Text="Done" />
+
+		<Message Text="%(Server.Identity): %(Admin.Identity)" />
+
+	</Target>
+
+	<Target Name="processInfra2" Outputs="%(Server.OS)" >
+		<!--<Message Text="@(Server->'%(OS)')" />-->
+		<Message Text="%(Server.OS)" />
+		<!--<Message Text="@(Server)" />-->
+		<Message Text="%(Server.Identity)" />
+	</Target>
+</Project>

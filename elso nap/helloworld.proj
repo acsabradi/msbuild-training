@@ -1,0 +1,78 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<FirstName>Akos</FirstName>
+		<LastName>Nagy</LastName>
+		<FirstName>Bela</FirstName>
+		<FullName>$(FirstName) $(LastName)</FullName>
+	</PropertyGroup>
+	
+	<Target Name="hello">
+		<Message Text="Hello world!" />
+	</Target>
+	
+	<Target Name="greetUser">
+		<Message Text="Hello $(FullName)" />
+		<Message Text="Temp path: $(TEMP)" />
+		<Message Text="Command line param: $(External)" />
+		<Message Text="$(MSBuildProjectFullPath)" />
+	</Target>
+	
+	
+	<PropertyGroup>
+		<Prop>Default</Prop>
+	</PropertyGroup>
+	 <Target Name="defaultValue">
+	   <Message Text="$(Prop)" />
+	 </Target> 
+	 
+	 
+	 <ItemGroup>
+		<Animals Include="$(FavoriteAnimal)" />
+		<Animals Include="macska" />
+		<Animals Include="héja" />
+		<Animals Include="egér;őz" />
+	 </ItemGroup>
+	 
+	 
+	 <PropertyGroup>
+		<FavoriteAnimal>kutya</FavoriteAnimal>
+	 </PropertyGroup>
+	 
+	 <ItemGroup>
+		<Files Include="file1.txt">
+			<Size>12</Size>
+			<ModifiedDate>2022. 12. 12.</ModifiedDate>
+		</Files>
+		<Files Include="file2.txt">
+			<Size>16</Size>
+			<ModifiedDate>2023. 01. 04.</ModifiedDate>
+		</Files>
+	 </ItemGroup>
+	 
+	 <Target Name="metadata">
+		<Message Text="@(Files->'%(ModifiedDate)')" />
+	 </Target>
+	 
+	 <Target Name="allatLista">
+		<Message Text="@(Animals)" />
+	 </Target>
+	 
+	 
+	 <ItemGroup>
+		<BuildFiles Include="src\*" />
+		<BuildFiles2 Include="src\**" />
+		<BuildFiles3 Include="src\*\*" />
+	 </ItemGroup>
+	 
+	 <Target Name="build">
+		<Message Text="@(BuildFiles)" />
+		<Message Text="@(BuildFiles2)" />
+		<Message Text="@(BuildFiles3)" />
+	 </Target>
+	 
+	 <Target Name="fileMeta">
+		<Message Text="@(BuildFiles2->'%(CreatedTime)')" />
+	 </Target>
+	 
+	 
+</Project>

@@ -1,0 +1,89 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask AssemblyFile="$(MSBuildProjectDirectory)\HelloWTaskLib\bin\Debug\HelloWTaskLib.dll" TaskName="HelloWorldTask" />
+	<UsingTask AssemblyFile="$(MSBuildProjectDirectory)\GreetingTask\bin\Debug\GreetingTask.dll" TaskName="GreetUser" />
+	<UsingTask AssemblyFile="$(MSBuildProjectDirectory)\DebugDemoLib\bin\Debug\DebugDemoLib.dll" TaskName="DebugTask" />
+	<UsingTask AssemblyFile="$(MSBuildProjectDirectory)\DateTimeNowTaskLib\bin\Debug\DateTimeNowTaskLib.dll" TaskName="DateTimeNow" />
+	<UsingTask AssemblyFile="$(MSBuildProjectDirectory)\DateTimeNowTaskLib\bin\Debug\DateTimeNowTaskLib.dll" TaskName="DateTimeOffsetter" />
+	<UsingTask AssemblyFile="$(MSBuildProjectDirectory)\TempFileTaskLib\bin\Debug\TempFileTaskLib.dll" TaskName="CreateTempFile" />
+	<UsingTask AssemblyFile="$(MSBuildProjectDirectory)\TotalSizeTaskLib\bin\Debug\TotalSizeTaskLib.dll" TaskName="TotalSize" />
+
+	<PropertyGroup>
+		<FirstName>Akos</FirstName>
+		<LastName>Nagy</LastName>
+		<FullNameMSBuild></FullNameMSBuild>
+	</PropertyGroup>
+	<Target Name="greetDemo">
+		<GreetUser FirstName="$(FirstName)" LastName="$(LastName)">
+			<Output PropertyName="FullNameMSBuild" TaskParameter="FullName" />
+		</GreetUser>
+	</Target>
+	<Target Name="afterGreet" AfterTargets="greetDemo">
+		<Message Text="Generated full name: $(FullNameMSBuild)" />
+	</Target>
+
+	<Target Name="hw">
+		<HelloWorldTask />
+	</Target>
+
+
+	<PropertyGroup>
+		<Result></Result>
+	</PropertyGroup>
+	<Target Name="dodebug">
+		<DebugTask InputValue="alma">
+			<Output PropertyName="Result" TaskParameter="Output" />
+		</DebugTask>
+		<DebugTask InputValue="alma2">
+			<Output PropertyName="Result" TaskParameter="Output" />
+		</DebugTask>
+	</Target>
+
+
+	<PropertyGroup>
+		<Now></Now>
+	</PropertyGroup>
+
+	<Target Name="checkdate">
+		<DateTimeNow IsUtc="True" DateOnly="True">
+			<Output PropertyName="Now" TaskParameter="Now" />
+		</DateTimeNow>
+	</Target>
+
+	<Target Name="afterCheckDate" AfterTargets="checkdate">
+		<Message Text="Aktualis datum: $(Now)" />
+	</Target>
+
+
+	<PropertyGroup>
+		<LaterDate></LaterDate>
+	</PropertyGroup>
+
+	<Target Name="offsetDate">
+		<DateTimeOffsetter OffsetDays="30">
+			<Output PropertyName="LaterDate" TaskParameter="OffsetDate" />
+		</DateTimeOffsetter>
+	</Target>
+
+	<Target Name="afteroffsetDate" AfterTargets="offsetDate">
+		<Message Text="30 nap mulva: $(LaterDate)" />
+	</Target>
+
+	<Target Name="doTemp">
+		<CreateTempFile>
+			<Output ItemName="TempFile" TaskParameter="TempFile" />
+		</CreateTempFile>
+		<Message Text="@(TempFile)" />
+	</Target>
+
+	<ItemGroup>
+		<Files Include="ConsoleApp1\**" />
+	</ItemGroup>
+
+	<Target Name="calculateSize">
+		<TotalSize SourceItems="@(Files)">
+			<Output PropertyName="SizeBytes" TaskParameter="Size" />
+		</TotalSize>
+		<Message Text="Total size of file: $(SizeBytes)"/>
+	</Target>
+
+</Project>

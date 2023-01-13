@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask AssemblyFile="$(MSBuildProjectDirectory)\SevenZTaskLib\bin\Debug\SevenZTaskLib.dll" TaskName="SevenZ" />
+	
+	<Target Name="echoWorld">
+		<Exec Command="echo Hello World" />
+	</Target>
+
+	<Target Name="zipContent">
+		<Exec Command="$(MSBuildProjectDirectory)\7z.exe a $(MSBuildProjectDirectory)\output.zip $(MSBuildProjectDirectory)\ConsoleApp1" />
+	</Target>
+
+	<Target Name="zipExtra">
+		<SevenZ OutputzipPath="$(MSBuildProjectDirectory)\output.zip"
+				InputFolder="$(MSBuildProjectDirectory)\ConsoleApp1" />
+	</Target>
+</Project>

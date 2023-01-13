@@ -1,0 +1,16 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<PropertyGroup>
+    <TargetFolder>dest</TargetFolder>
+</PropertyGroup>
+
+<ItemGroup>
+	<SourceFiles Include="src\**" />
+	<TargetFiles Include="@(SourceFiles->'$(TargetFolder)\%(RecursiveDir)%(FileName)%(Extension)')" />
+</ItemGroup>
+
+<Target Name="CopyTarget">
+	<Copy SourceFiles="@(SourceFiles)" DestinationFiles="@(TargetFiles)" />
+</Target>
+
+</Project>

@@ -1,0 +1,10 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<AssemblyName>ConsoleApp2</AssemblyName>
+		<Configuration>DEBUG</Configuration>
+	</PropertyGroup>
+
+	<Target Name="build">
+		<Message Text="Building project $(AssemblyName) with config $(Configuration)" />
+	</Target>
+</Project>

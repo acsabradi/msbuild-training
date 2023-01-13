@@ -1,0 +1,29 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<Configuration>DEBUG</Configuration>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<WebFiles Include="index.html" />
+		<WebFiles Include="scripts.js" Condition="$(Configuration)=='DEBUG'" />
+		<WebFiles Include="scripts.min.js" Condition="$(Configuration)=='RELEASE'" />
+	</ItemGroup>
+
+	
+	<Target Name="webpack">
+		<Error Text="Config not specified" Condition="$(Configuration)==''" />
+		<Error Text="Unknown config: $(Configuration)" 
+			   Condition="!($(Configuration)=='RELEASE' OR $(Configuration)=='DEBUG')" />
+		<Message Text="@(WebFiles)" />
+		<OnError ExecuteTargets="handleError" />
+	</Target>
+	
+	<Target Name="handleError">
+		<Message Text="oops" />
+	</Target>
+
+
+</Project>
+
+

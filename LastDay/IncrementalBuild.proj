@@ -1,0 +1,32 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<SourceFiles Include="src\**" />
+	</ItemGroup>
+	<PropertyGroup>
+		<DestFolder>dest</DestFolder>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ForceUpdate></ForceUpdate>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TriggeredByCopy></TriggeredByCopy>
+	</PropertyGroup>
+	
+	<!--<Target Name="copyTarget" Inputs="@(SourceFiles)" 
+							  Outputs="@(SourceFiles->'$(DestFolder)\%(RecursiveDir)%(FileName)%(Extension)')">
+		<Copy SourceFiles="@(SourceFiles)"
+			  DestinationFiles="@(SourceFiles->'$(DestFolder)\%(RecursiveDir)%(FileName)%(Extension)')" />
+		<CallTarget Targets="afterCopy" />
+	</Target>
+	
+	<Target Name="afterCopy" />-->
+
+	<Target Name="copyTarget" Inputs="@(SourceFiles)"
+							  Outputs="@(SourceFiles->'$(DestFolder)\%(RecursiveDir)%(FileName)%(Extension)')">
+		<Copy SourceFiles="@(SourceFiles)"
+			  DestinationFiles="@(SourceFiles->'$(DestFolder)\%(RecursiveDir)%(FileName)%(Extension)')" />
+		<CallTarget Targets="$(TriggeredByCopy)" Condition="'$(TriggeredByCopy)'!=''" />
+	</Target>
+
+</Project>

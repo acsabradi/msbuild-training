@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+	<metadata>
+		<id>BuildMessengerTask</id>
+		<version>1.0.0</version>
+		<description>Super MSBuild task</description>
+		<authors>Akos</authors>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	</metadata>
+	<files>
+		<file src="bin\Debug\**" target="tools" />
+		<file src="build\**" target="build" />
+	</files>
+</package> 

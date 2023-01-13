@@ -1,0 +1,26 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<!-- BasePath: egy olyan elérési út, ami ...; \ karakter nélkül -->
+	<PropertyGroup>
+		<FullPath>$(BasePath.TrimEnd('\'))\subfolder</FullPath>
+		<BuildStart>$([System.DateTime]::Now.ToShortDateString())</BuildStart>
+		<Value1>5</Value1>
+		<Value2>7</Value2>
+		<Sum>$([MSBuild]::Add($(Value1),$(Value2)))</Sum>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<BuildTemp Include="$([System.IO.Path]::GetTempFileName())" />
+		<RandomName Include="$([System.Guid]::NewGuid().ToString().Substring(0,8))" />
+	</ItemGroup>
+
+	<Target Name="build">
+		<Message Text="$(FullPath)" />
+		<Message Text="@(BuildTemp)" />
+		<Message Text="@(RandomName)" />
+		<Message Text="$(BuildStart)" />
+		<Message Text="$(Sum)" />
+		<Message Text="@(BuildTemp->Metadata('FileName'))"/>
+	</Target>
+
+</Project>

@@ -1,0 +1,14 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="IncrementalBuild.proj"/>
+	<Target Name="afterCopy">
+		<Message Text="Overridden aftercopy" />
+	</Target>
+
+	<PropertyGroup>
+		<TriggeredByCopy>$(TriggeredByCopy);customAfterCopy</TriggeredByCopy>
+	</PropertyGroup>
+	
+	<Target Name="customAfterCopy">
+		<Message Text="Some extra after copy" />
+	</Target>
+</Project>

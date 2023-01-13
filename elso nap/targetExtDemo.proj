@@ -1,0 +1,21 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	
+	<Target Name="prebuild" BeforeTargets="build">
+		<Message Text="Before the build..." />
+	</Target>
+	
+	<Target Name="build" DependsOnTargets="clean;setup" >
+		<Message Text="Building solution..." />
+	</Target>
+	
+	<Target Name="postbuild" AfterTargets="build">
+		<Message Text="After the build..." />
+	</Target>
+	
+	<Target Name="clean">
+		<Message Text="Cleaning previous files" />
+	</Target>
+	<Target Name="setup">
+		<Message Text="Setting up build" />
+	</Target>
+</Project>

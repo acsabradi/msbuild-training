@@ -1,0 +1,44 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<ProjectFilesHACK Include="ConsoleApp1DEBUG" >
+			<ProjFile>ConsoleApp1.proj</ProjFile>
+			<Configuration>DEBUG</Configuration>
+		</ProjectFilesHACK>
+
+		<ProjectFilesHACK Include="ConsoleApp2DEBUG" >
+			<ProjFile>ConsoleApp2.proj</ProjFile>
+			<Configuration>DEBUG</Configuration>
+		</ProjectFilesHACK>
+
+		<ProjectFilesHACK Include="ConsoleApp1RELEASE" >
+			<ProjFile>ConsoleApp1.proj</ProjFile>
+			<Configuration>RELEASE</Configuration>
+		</ProjectFilesHACK>
+
+		<ProjectFilesHACK Include="ConsoleApp2RELEASE" >
+			<ProjFile>ConsoleApp2.proj</ProjFile>
+			<Configuration>RELEASE</Configuration>
+		</ProjectFilesHACK>	
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectFiles Include="ConsoleApp1.proj" />
+		<ProjectFiles Include="ConsoleApp2.proj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Configurations Include="DEBUG" />
+		<Configurations Include="RELEASE" />
+	</ItemGroup>
+
+	<Target Name="multibuild">
+		<!--<Exec Command="msbuild %(ProjectFilesHACK.ProjFile) /t:build /p:Configuration=%(ProjectFilesHACK.Configuration)" />-->
+		<!--<Message Text="msbuild %(ProjectFilesHACK.ProjFile) /t:build /p:Configuration=%(ProjectFilesHACK.Configuration)" />-->
+	</Target>
+
+
+	<Target Name="multibuild2">
+		<MSBuild Projects="@(ProjectFiles)" Targets="build" Properties="Configuration=%(Configurations.Identity)" />
+	</Target>
+</Project>

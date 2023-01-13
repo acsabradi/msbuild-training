@@ -1,0 +1,28 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<BuildDependsOn>
+			prebuild;
+			corebuild;
+			postbuild
+		</BuildDependsOn>
+	</PropertyGroup>
+	<Target Name="prebuild">
+		<Message Text="Setting up the build..." />
+	</Target>
+	<Target Name="corebuild">
+		<Message Text="Actually doing the build..." />
+	</Target>
+	<Target Name="postbuild">
+		<Message Text="Cleaning up the build..." />
+	</Target>
+	<Target Name="build" DependsOnTargets="$(BuildDependsOn)" />
+
+
+	<Target Name="beforeProcess" />
+	<Target Name="coreprocess">
+		<Message Text="Doing the actual process" />
+	</Target>
+	<Target Name="afterProcess" />
+	<Target Name="process" 
+			DependsOnTargets="beforeProcess;coreProcess;afterProcess" />
+</Project>

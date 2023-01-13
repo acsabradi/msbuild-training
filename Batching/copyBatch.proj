@@ -1,0 +1,18 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<ItemGroup>
+		<TargetFolders Include="dest1" />
+		<TargetFolders Include="dest2" />
+		<TargetFolders Include="dest3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<SourceFiles Include="src\**" />
+	</ItemGroup>
+	
+	<Target Name="multiCopy">
+		<MakeDir Directories="%(TargetFolders.Identity)" />
+		<!--<MakeDir Directories="@(TargetFolders)" />-->
+		<Copy SourceFiles="@(SourceFiles)" DestinationFolder="%(TargetFolders.Identity)" />
+	</Target>
+</Project>
