@@ -1,6 +1,45 @@
 # kurzuskod
 
+## **TEMATIKA**
 
+MODUL 1 - Az MSBuild alapjai
+- MSBuild command line
+- Property-k, Itemek, Metadata, Taskok és Target-ek
+- Conditions
+- Item functions, property functions, MSBuild funtions
+- Import
+- Hibakezelés
+
+MODUL 2 - Az MSBuild folyamat kibővítési lehetőségei
+- PreBuildEvent & PostBuildEvent
+- Target overriding
+- Target hooks
+- Target injection
+
+MODUL 3 - Saját taskok és loggerek
+- Saját taskok készítése és használata: ITask, Task, ToolTask
+- Inline taskok készítése és használata, saját TaskFactory készítése
+- Saját loggerek készítése
+- Binary logger
+- Saját taskok publikálása NuGet segítségével
+
+ MODUL 4 - Batch-elés
+- Target batch-elés
+- Task bach-elés
+- Multibatch
+- Shared metadata
+- Incremental és partial build
+
+ MODUL 5 - MSBuild a gyakorlatban
+- Solution build
+- Teljesítménydiagnosztika
+- Beépített taskok: copy, message, exec, msbuild
+- Kiegészítések: MSBuild Community Tasks, MSBuild Extensions; NUnit task
+- Újrahasználható target fájl készítése
+- Assembly verzió beállítása
+- Kimenet tömörítése
+- Feltöltés FTP-re, Azure-be
+- Web.config állományok titkosítása
 
 ## Getting started
 
